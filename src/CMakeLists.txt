@@ -1,4 +1,4 @@
-# CMakeLists.txt for src/ of SciDB-HDF5 
+0;95;c# CMakeLists.txt for src/ of SciDB-HDF5 
 #
 #
 #   Copyright 2011  Jacek Becla, Daniel Liwei Wang
@@ -16,11 +16,11 @@
 # limitations under the License.
 #
 
-set(BOOST_ROOT /opt/scidb/13.11/3rdparty/boost)
+set(BOOST_ROOT /opt/scidb/13.12/3rdparty/boost)
 set(Boost_NO_SYSTEM_PATHS TRUE)
 set(Boost_NO_BOOST_CMAKE TRUE)
 
-set(SCIDB_ROOT_DIR /opt/scidb/13.11)
+set(SCIDB_ROOT_DIR /opt/scidb/13.12)
 
 find_package(ZLIB REQUIRED)
 # Point at non-system locations via H5INC_PATH and H5LIB_PATH
