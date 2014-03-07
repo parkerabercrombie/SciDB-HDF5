@@ -29,8 +29,8 @@ namespace {
         scidb::DimensionDesc operator()(ScidbDimLite const& dim) {
             return scidb::DimensionDesc(dim.name, dim.min, dim.start, 
                                         dim.end, dim.max,
-                                        dim.chunkInterval, dim.chunkOverlap, 
-                                        dim.typeId, 0/*flags*/, dim.arrayName);
+                                        dim.chunkInterval, dim.chunkOverlap);
+                                        //dim.typeId, 0/*flags*/, dim.arrayName);
         }
     };
     
