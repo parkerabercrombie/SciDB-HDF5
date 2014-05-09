@@ -28,12 +28,23 @@ include(FindPackageHandleStandardArgs)
 
 # Look for includes and libraries
 find_path(SCIDB_INCLUDE_ARRAY  array/Array.h 
-  HINTS ${SCIDB_ROOT_DIR}
+  HINTS $ENV{SCIDB_SRC_DIR}
   PATH_SUFFIXES include src
   DOC "Path to include directory for array/Array.h in Scidb source tree")
 
+# Find SciDB plugin directory.
+# TODO: can we do this without needing to assume that certain plugin is present?
+find_path(SCIDB_PLUGIN_DIR
+  NAMES
+    libmpi.so
+  PATH_SUFFIXES
+    scidb/$ENV{SCIDB_VER}/lib/scidb/plugins
+  PATHS
+    /opt
+)
+
 find_path(SCIDB_SRC_DIR array/Metadata.cpp 
-  HINTS ${SCIDB_ROOT_DIR}
+  HINTS $ENV{SCIDB_SRC_DIR}
   PATH_SUFFIXES src)
 
 find_package_handle_standard_args(SCIDB DEFAULT_MSG 
