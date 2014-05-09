@@ -1,4 +1,4 @@
-0;95;c# CMakeLists.txt for src/ of SciDB-HDF5 
+# CMakeLists.txt for src/ of SciDB-HDF5 
 #
 #
 #   Copyright 2011  Jacek Becla, Daniel Liwei Wang
@@ -32,7 +32,7 @@ include_directories(${HDF5_INCLUDE_DIR} ${SCIDB_INCLUDES} ${Boost_INCLUDE_DIRS})
 
 # SciDB special flags
 set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} ${SCIDB_CXX_FLAGS}")
-set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -fPIC -rdynamic")
+set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -fPIC -rdynamic -Wno-variadic-macros")
 
 
 # file dumper
@@ -44,6 +44,7 @@ set(plugin_src plugin.cc loadOperator.cc H5Array.cc H5Array_Scidb.cc
   loadUtils.cc arrayCommon.cc)
 add_library(loadhdf SHARED ${plugin_src})
 target_link_libraries(loadhdf ${HDF5_LIBRARIES} ${Boost_LIBRARIES})
+install(TARGETS loadhdf DESTINATION ${SCIDB_PLUGIN_DIR})
 
 # FITS plugin
 find_package(Cfitsio)
@@ -89,8 +90,6 @@ find_library(BOOST_PROGOPTS boost_program_options)
 # test program
 add_executable(testHdf testHdf.cc H5Array.cc arrayCommon.cc H5Array_stub.cc)
 target_link_libraries(testHdf ${HDF5_LIBRARIES} ${Boost_LIBRARIES})
-
-
 
 #include(FeatureSummary)
 #print_enabled_features()
